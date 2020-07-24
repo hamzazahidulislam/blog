@@ -1,0 +1,58 @@
+<<<<<<< HEAD
+{% extends './product_detail_base.htm' %}
+
+{% block content %}
+<!-- Blog Entries Column -->
+
+<div class="col-md-8">
+
+    <h1 class="my-4">
+        <small></small>
+    </h1>
+
+
+    <!-- Blog Post -->
+    <div class="card mb-4">
+        <img class="card-img-top" src="{{ product_detail.image.url }}" alt="Card image cap">
+        <div class="card-body">
+            <h2 class="card-title">Product Name : {{  product_detail.name }}</h2>
+            <h2 class="card-title"> Product Price : ${{  product_detail.price }}</h2>
+            <p class="card-text"> Product Description{{ product_detail.description  }}</p>
+        </div>
+
+    </div>
+
+    <!-- Pagination -->
+
+
+</div>
+=======
+{% extends './product_detail_base.htm' %}
+
+{% block content %}
+<!-- Blog Entries Column -->
+
+<div class="col-md-8">
+
+    <h1 class="my-4">
+        <small></small>
+    </h1>
+
+
+    <!-- Blog Post -->
+    <div class="card mb-4">
+        <img class="card-img-top" src="{{ product_detail.image.url }}" alt="Card image cap">
+        <div class="card-body">
+            <h2 class="card-title">Product Name : {{  product_detail.name }}</h2>
+            <h2 class="card-title"> Product Price : ${{  product_detail.price }}</h2>
+            <p class="card-text"> Product Description{{ product_detail.description  }}</p>
+        </div>
+
+    </div>
+
+    <!-- Pagination -->
+
+
+</div>
+>>>>>>> origin/master
+{% endblock content %}

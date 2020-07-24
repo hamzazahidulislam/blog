@@ -1,0 +1,6 @@
+<form action='' method="post">
+    {{form.as_p}}
+    {% csrf_token %}
+    <a href="{% url 'user-logout' %}">logout</a>
+    <input type="submit" name="submit">
+</form>
