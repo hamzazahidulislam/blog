@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -6,6 +6,48 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+
+
+@login_required
+def user_profile(request):
+    # user = request.user
+    # profile = Profile.objects.get(user=user)
+    # profile = user.profile
+    # context = {'profile': profile, 'user': user}
+
+    Profile.objects.get_or_create(user=request.user)
+    return render(request, 'account/profile.htm')
+
+
+    # return render(request, 'account/profile.htm')
+
+
+@login_required
+def create_profile(request):
+    form = ProfileForm()
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('user-dashboard')
+
+    context = {'form': form}
+    return render(request, 'account/create_profile.htm', context)
+
+
+@login_required
+def edit_profile(request):
+    profile = Profile.objects.get(user=request.user)
+    form = ProfileForm(instance=profile)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    context = {'form': form}
+    return render(request, 'account/edit_profile.htm', context)
 
 
 @login_required

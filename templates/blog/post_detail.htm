@@ -22,6 +22,25 @@
             <a href="#">{{post_detail.author}}</a>
         </div>
     </div>
+    <div class="card-footer">
+        <h1>{{post_detail.comments.all | length}} Comments</h1>
+        {% if post_detail.comments %}
+
+        {% for comment in post_detail.comments.all %}
+        <p>{{comment.name}}</p>
+        <p>{{comment.body}}</p>
+        <hr>
+        {% endfor %}
+
+        {% endif %}
+
+        <h1>Leave a reply</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Post Comment" class="btn btn-success">
+        </form>
+    </div>
 
     <!-- Pagination -->
     <ul class="pagination justify-content-center mb-4">
